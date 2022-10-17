@@ -1,0 +1,65 @@
+﻿/*
+Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+
+*/
+
+
+Console.Clear();
+
+Console.WriteLine("Количество строк");
+int rowCount = int.Parse(Console.ReadLine());
+Console.WriteLine("Количество столбцов");
+int columnCount = int.Parse(Console.ReadLine());
+
+int[,] array = FillArray(rowCount, columnCount, 1 , 10);
+PrintArray(array);
+Console.WriteLine();
+
+MidSumElementArrayColumn(array);
+Console.WriteLine();
+
+
+int[,] FillArray  (int rows, int columns, int min, int max)
+{
+    int[,] filledArray = new int[rows, columns];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            filledArray[i, j] = new Random().Next(min, max + 1);
+        }
+    }
+    return filledArray;
+}
+
+void PrintArray (int [,] inputArray)
+{
+    for (int i = 0; i < inputArray.GetLength(0); i++)
+    {
+        for (int j = 0; j < inputArray.GetLength(1); j++)
+        {
+            Console.Write(" " + inputArray[i,j]);
+        }
+        Console.WriteLine();
+    }
+}
+
+void MidSumElementArrayColumn(int[,] inputArray)                                     
+{
+    for (int j = 0; j < inputArray.GetLength(1); j++)
+    {
+        double sumElementArrayColumn = 0;
+        for (int i = 0; i < inputArray.GetLength(0); i++)
+        {
+            sumElementArrayColumn = sumElementArrayColumn + inputArray[i,j];
+        }
+    Console.WriteLine($"Среднее арифметическое элементов {j+1} столбца равна: {Math.Round(sumElementArrayColumn / array.GetLength(0),1)}");
+    }
+}
+                                      
